@@ -1,14 +1,50 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  node: circleci/node@4.1.0
+  cypress: cypress-io/cypress@1.26.0
+  heroku: circleci/heroku@1.2.3
 workflows:
-  build:
+  test:
     jobs:
       - cypress/install:
+          yarn: true
           build: 'yarn install' # run a custom app build step
       - cypress/run:
           requires:
             - cypress/install
-          record: true # record results on Cypress Dashboard
+          yarn: true
           group: 'all tests' # name this group "all tests" on the dashboard
           start: 'yarn test:e2e'
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.15.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run: # run tests
+          name: test
+          command: yarn run test:unit
+      - run: # run build
+          name: Build
+          command: yarn run apollo:schema:generate
+      - run: # run build
+          name: Build
+          command: yarn run build
