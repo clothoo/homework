@@ -1,0 +1,14 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/install:
+          build: 'yarn install' # run a custom app build step
+      - cypress/run:
+          requires:
+            - cypress/install
+          record: true # record results on Cypress Dashboard
+          group: 'all tests' # name this group "all tests" on the dashboard
+          start: 'yarn test:e2e'
