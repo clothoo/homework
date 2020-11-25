@@ -1,49 +1,46 @@
-# homework
+# [Homework](https://github.com/clothoo/homework)
 
-## Project setup
+### Project setup
+
+- UI: Vue.js
+- UI theme: Bootstrap-Vue
+- Server: Apollo GraphQL
+- Unit test: Jest
+- E2E test: Cypress
+- CI/CI: CircleCI
+
+### Running locally
+
+#### Step 0: Install dependencies
 
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-
-#### Start apollo server
+#### Step 1: Start apollo server
 
 ```
 yarn apollo
 ```
 
-#### Start ui
+GraphQL server will start on http://localhost:4000/graphql
+
+#### Step 2: Start ui
 
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+Web app will start on http://localhost:8080
 
-```
-yarn build
-```
-
-### Run your unit tests
+### Run unit tests
 
 ```
 yarn test:unit
 ```
 
-### Run your end-to-end tests
+### Run end-to-end tests
 
 ```
 yarn test:e2e
 ```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
