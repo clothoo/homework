@@ -3,6 +3,7 @@ module.exports = {
     apollo: {
       enableMocks: true,
       enableEngine: false,
+      lintGQL: true,
     },
   },
 };

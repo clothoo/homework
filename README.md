@@ -8,6 +8,14 @@ yarn install
 
 ### Compiles and hot-reloads for development
 
+#### Start apollo server
+
+```
+yarn apollo
+```
+
+#### Start ui
+
 ```
 yarn serve
 ```
