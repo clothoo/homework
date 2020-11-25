@@ -24,10 +24,6 @@ workflows:
           filters:
             branches:
               only: main
-          pre-steps:
-            - run:
-              name: generate
-              command: yarn run apollo:schema:generate
 jobs:
   build:
     docker:
