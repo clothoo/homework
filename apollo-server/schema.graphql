@@ -1,0 +1,23 @@
+type Address {
+  addressLine1: String
+  addressLine2: String
+  state: String
+  country: String
+  postcode: String
+}
+
+type Customer {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  mobile: String
+  address: Address
+}
+
+type Query {
+  "List of customers"
+  customers: [Customer]
+  "Customer details"
+  customerDetails(id: Int!): Customer
+}
